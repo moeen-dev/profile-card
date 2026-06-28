@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md Moeen Uddin | Backend Web Developer & Blogger</title>
+    <meta name="description" content="Building scalable web experiences and sharing knowledge through blogging. Portfolio card of Md Moeen Uddin.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#06b6d4',
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            darkBg: '#030712',
+                            lightBg: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Linking Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-brand-darkBg text-gray-100 min-h-screen relative flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 loading-active transition-colors duration-500">
+    
+    <!-- Preloader Screen -->
+    <div id="loader" class="fixed inset-0 bg-brand-darkBg z-50 flex flex-col items-center justify-center transition-all duration-700 ease-out">
+        <div class="relative w-24 h-24 mb-4">
+            <div class="absolute inset-0 rounded-full border-4 border-t-brand-cyan border-r-brand-purple border-b-transparent border-l-transparent animate-spin"></div>
+            <div class="absolute inset-2 rounded-full border-4 border-b-brand-pink border-l-brand-cyan border-t-transparent border-r-transparent animate-spin [animation-duration:1s] opacity-70"></div>
+        </div>
+        <div class="text-xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-purple animate-pulse">
+            LOADING PROFILE...
+        </div>
+    </div>
+
+    <!-- Background Decoration Elements -->
+    <div id="cursor-glow" class="hidden md:block"></div>
+    <div id="bg-mesh" class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="animated-mesh"></div>
+        <div class="absolute top-10 left-10 w-20 h-20 bg-brand-cyan/10 rounded-full blur-xl animate-bounce [animation-duration:6s]"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 bg-brand-purple/10 rounded-xl blur-2xl animate-pulse [animation-duration:8s]"></div>
+    </div>
+
+    <!-- Main Container Layout -->
+    <main class="w-full max-w-4xl z-10 opacity-0 transform translate-y-8 transition-all duration-1000 ease-out" id="main-content">
+        
+        <!-- Controls Bar -->
+        <div class="flex justify-between items-center mb-6 px-2">
+            <div class="flex space-x-2">
+                <span class="w-3 h-3 rounded-full bg-red-500/80 block"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500/80 block"></span>
+                <span class="w-3 h-3 rounded-full bg-green-500/80 block"></span>
+            </div>
+            
+            <button id="theme-toggle" class="w-10 h-10 rounded-xl flex items-center justify-center bg-white/5 text-gray-400 border border-white/10 shadow-lg hover:text-brand-cyan transition-all duration-300 transform hover:scale-105" aria-label="Toggle Interface Theme">
+                <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Dynamic Profile Card Container -->
+        <div id="profile-card" class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden transition-all duration-500 card-container">
+            <div class="absolute inset-0 pointer-events-none opacity-20 bg-gradient-to-tr from-transparent via-white to-transparent -translate-x-full transition-transform duration-1000 ease-out" id="reflection-sweep"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Left Column Panel -->
+                <div id="profile-left-panel" class="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left border-b lg:border-b-0 lg:border-r border-white/10 pb-8 lg:pb-0 lg:pr-8 transition-all duration-500">
+                    
+                    <!-- Avatar Area Wrapper -->
+                    <div class="relative group cursor-pointer mb-6">
+                        <!-- Neon Glow Ring -->
+                        <div id="avatar-glow" class="absolute -inset-1 bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink rounded-full blur opacity-75 group-hover:opacity-100 transition duration-700 group-hover:duration-200 animate-tilt"></div>
+                        
+                        <!-- Main Frame -->
+                        <div id="avatar-frame" class="relative w-36 h-36 rounded-full bg-gray-900 border-2 border-white/10 overflow-hidden transition-all duration-500">
+                            <img src="moeen.png" alt="Md Moeen Uddin" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <span id="status-dot" class="absolute bottom-1 right-2 bg-emerald-500 w-5 h-5 rounded-full border-4 border-brand-darkBg shadow-md animate-pulse transition-all duration-500"></span>
+                    </div>
+
+                    <h1 id="profile-name" class="text-3xl font-extrabold tracking-tight mb-2 text-white transition-all duration-500">
+                        Md Moeen Uddin
+                    </h1>
+
+                    <div class="h-6 mb-4 flex items-center">
+                        <span id="typed-text" class="text-brand-cyan font-semibold tracking-wide text-sm uppercase"></span>
+                        <span id="typed-cursor" class="w-1.5 h-4 bg-brand-purple ml-1 animate-ping"></span>
+                    </div>
+
+                    <p id="profile-bio" class="text-gray-400 text-sm leading-relaxed mb-6 font-medium transition-all duration-500">
+                        Building scalable web experiences and sharing knowledge through blogging. Focusing on architectural integrity, high-throughput APIs, and modern ecosystem optimization.
+                    </p>
+
+                    <a id="cta-button" href="mailto:moeen.contact.me@gmail.com" class="px-6 py-3 w-full bg-gradient-to-r from-brand-cyan/20 to-brand-purple/20 hover:from-brand-cyan hover:to-brand-purple text-white font-semibold rounded-xl border border-brand-cyan/30 hover:border-transparent text-center transition-all duration-500 transform hover:-translate-y-1 shadow-lg hover:shadow-brand-cyan/20 group flex items-center justify-center space-x-2">
+                        <span>Let's Build Together</span>
+                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Right Column Panel -->
+                <div class="lg:col-span-7 space-y-8">
+                    <!-- Tech Stack section -->
+                    <div>
+                        <h3 id="stack-title" class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-4 flex items-center transition-all duration-500">
+                            <i class="fa-solid fa-layer-group mr-2 text-brand-purple"></i> Core Engineering Stack
+                        </h3>
+                        <div class="flex flex-wrap gap-2.5">
+                            <span class="skill-badge bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-300 hover:text-brand-cyan transition-all duration-300 cursor-default flex items-center space-x-1.5"><i class="fa-brands fa-node-js text-emerald-500"></i><span>Node.js</span></span>
+                            <span class="skill-badge bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-300 hover:text-brand-cyan transition-all duration-300 cursor-default flex items-center space-x-1.5"><i class="fa-brands fa-npm text-red-400"></i><span>npm</span></span>
+                            <span class="skill-badge bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-300 hover:text-brand-cyan transition-all duration-300 cursor-default flex items-center space-x-1.5"><i class="fa-brands fa-php text-indigo-400"></i><span>PHP</span></span>
+                            <span class="skill-badge bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-300 hover:text-brand-cyan transition-all duration-300 cursor-default flex items-center space-x-1.5"><i class="fa-brands fa-laravel text-red-500"></i><span>Laravel</span></span>
+                            <span class="skill-badge bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-300 hover:text-brand-cyan transition-all duration-300 cursor-default flex items-center space-x-1.5"><i class="fa-solid fa-database text-blue-400"></i><span>MySQL</span></span>
+                            <span class="skill-badge bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-300 hover:text-brand-cyan transition-all duration-300 cursor-default flex items-center space-x-1.5"><i class="fa-solid fa-space-shuttle text-orange-500"></i><span>Postman</span></span>
+                            <span class="skill-badge bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-300 hover:text-brand-cyan transition-all duration-300 cursor-default flex items-center space-x-1.5"><i class="fa-solid fa-network-wired text-cyan-400"></i><span>REST API</span></span>
+                            <span class="skill-badge bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-gray-300 hover:text-brand-cyan transition-all duration-300 cursor-default flex items-center space-x-1.5"><i class="fa-solid fa-cubes text-purple-400"></i><span>Backend Architecture</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Counters section -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="stat-box bg-white/5 border border-white/10 p-4 rounded-2xl text-center group transition-all duration-300">
+                            <div class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-blue-500 stat-counter has-plus" data-target="48">0</div>
+                            <div class="stat-label text-[10px] uppercase font-bold tracking-wider text-gray-500 mt-1">Projects Done</div>
+                        </div>
+                        <div class="stat-box bg-white/5 border border-white/10 p-4 rounded-2xl text-center group transition-all duration-300">
+                            <div class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-pink-500 stat-counter has-plus" data-target="5">0</div>
+                            <div class="stat-label text-[10px] uppercase font-bold tracking-wider text-gray-500 mt-1">Years Exp.</div>
+                        </div>
+                        <div class="stat-box bg-white/5 border border-white/10 p-4 rounded-2xl text-center group transition-all duration-300">
+                            <div class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-pink to-orange-400 stat-counter has-plus" data-target="120">0</div>
+                            <div class="stat-label text-[10px] uppercase font-bold tracking-wider text-gray-500 mt-1">Blog Articles</div>
+                        </div>
+                        <div class="stat-box bg-white/5 border border-white/10 p-4 rounded-2xl text-center group transition-all duration-300">
+                            <div class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-brand-cyan stat-counter has-plus" data-target="64">0</div>
+                            <div class="stat-label text-[10px] uppercase font-bold tracking-wider text-gray-500 mt-1">Git Repos</div>
+                        </div>
+                    </div>
+
+                    <!-- Social Syndication Section -->
+                    <div>
+                        <h3 id="footprint-title" class="text-xs uppercase tracking-widest text-gray-400 font-bold mb-4 flex items-center transition-all duration-500">
+                            <i class="fa-solid fa-share-nodes mr-2 text-brand-cyan"></i> Digital Footprint Syndication
+                        </h3>
+                        <div class="grid grid-cols-5 gap-3">
+                            <a href="https://github.com/moeen-dev" target="_blank" rel="noopener noreferrer" class="social-btn bg-white/5 border border-white/10 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800/50 text-xl transition-all duration-300 shadow-sm" aria-label="Github Profile Link"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://linkedin.com/in/mdmoeenuddinn" target="_blank" rel="noopener noreferrer" class="social-btn bg-white/5 border border-white/10 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-[#0077b5] hover:bg-[#0077b5]/10 text-xl transition-all duration-300 shadow-sm" aria-label="LinkedIn Profile Link"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="https://youtube.com/@mdmoeenuddinn" target="_blank" rel="noopener noreferrer" class="social-btn bg-white/5 border border-white/10 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-[#ff0000] hover:bg-[#ff0000]/10 text-xl transition-all duration-300 shadow-sm" aria-label="YouTube Channel Link"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="https://facebook.com/mdmoeenuddinn" target="_blank" rel="noopener noreferrer" class="social-btn bg-white/5 border border-white/10 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-[#1877f2] hover:bg-[#1877f2]/10 text-xl transition-all duration-300 shadow-sm" aria-label="Facebook Profile Link"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://instagram.com/mdmoeenuddinn" target="_blank" rel="noopener noreferrer" class="social-btn bg-white/5 border border-white/10 h-12 rounded-xl flex items-center justify-center text-gray-400 hover:text-[#c13584] hover:bg-[#c13584]/10 text-xl transition-all duration-300 shadow-sm" aria-label="Instagram Profile Link"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <footer id="page-footer" class="mt-6 text-center text-[11px] font-semibold tracking-wider text-gray-500 uppercase px-4 flex flex-col sm:flex-row justify-between items-center gap-2 transition-all duration-500">
+            <div>&copy; 2026 Md Moeen Uddin. All rights reserved.</div>
+            <div class="flex items-center space-x-4">
+                <span class="hover:text-brand-cyan cursor-pointer transition-colors duration-200">Development</span>
+                <span class="w-1 h-1 bg-gray-600 rounded-full"></span>
+                <span class="hover:text-brand-purple cursor-pointer transition-colors duration-200">Blogging</span>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Linking Custom Core Script -->
+    <script src="script.js"></script>
+</body>
+</html>
